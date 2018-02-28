@@ -3,7 +3,7 @@
 Plugin Name: Wovax CREST People Updated
 Plugin URI: https://www.wovax.com/
 Description: Sync people with CREST feed.
-Version: 1.0.0
+Version: 1.0.1
 Author: Wovax, Danial Bleile.
 Author URI: https://www.wovax.com/
 */

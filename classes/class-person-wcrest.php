@@ -163,7 +163,7 @@ class Person_WCREST {
 		
 		$id_array = explode( ',', $blacklisted_ids );
 		
-		if ( is_array( $id_array ) && in_array( $crest_id, $id_array ) ){
+		if ( ! empty( $id_array ) && is_array( $id_array ) && in_array( $crest_id, $id_array ) ){
 			
 			return true;
 			
