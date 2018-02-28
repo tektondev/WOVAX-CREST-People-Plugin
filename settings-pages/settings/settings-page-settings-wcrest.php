@@ -11,6 +11,7 @@ class Settings_Page_Settings_WCREST extends Settings_Page_WCREST {
 		'_wcrest_user' 		=> 'text',
 		'_wcrest_pwd'  		=> 'text',
 		'_wcrest_offices'  	=> 'array',
+		'_wcrest_blacklist' => 'text',
 	);
 	
 	
@@ -24,11 +25,28 @@ class Settings_Page_Settings_WCREST extends Settings_Page_WCREST {
 		
 			$this->update_office();
 		
+		} else if ( isset( $_POST['_id_blacklist'] ) ) { 
+		
+			$this->update_blacklist();
+		
 		} // end if
 		
 		parent::render_page();
 		
 	} // end render_page
+	
+	
+	protected function update_blacklist(){
+		
+		if ( ! empty( $_POST['_wcrest_blacklist'] ) ){ 
+		
+			$option = sanitize_text_field( $_POST['_wcrest_blacklist']);
+		
+			update_option( '_wcrest_blacklist', $option );
+				   
+		} // End if
+		
+	} // End update_blacklist
 	
 	
 	public function the_form( $settings ){

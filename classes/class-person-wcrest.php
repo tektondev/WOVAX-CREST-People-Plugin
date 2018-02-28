@@ -157,11 +157,40 @@ class Person_WCREST {
 	} // End check_status
 	
 	
+	protected function check_blacklist( $crest_id ){
+		
+		$blacklisted_ids = get_option('_wcrest_blacklist', '' );
+		
+		$id_array = explode( ',', $blacklisted_ids );
+		
+		if ( is_array( $id_array ) && in_array( $crest_id, $id_array ) ){
+			
+			return true;
+			
+		} // End if
+		
+		return false;
+		
+	} // End check_blacklist
+	
+	
 	public function create_person( $force_update = false ){
 		
 		//var_dump( $this->settings );
 		
 		$date = date("Y-m-dTH:i:s");
+		
+		$is_blacklisted = $this->check_blacklist( $this->settings['_crest_id'] );
+		
+		if ( $is_blacklisted ){
+			
+			return array(
+					'status' 	=> false,
+					'msg' 		=> 'ID Blacklisted',
+					'response' => '',
+				);
+			
+		} // End if
 		
 		$exists = $this->check_person_exists( $this->settings['_person_id'] );
 		
